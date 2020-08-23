@@ -1,0 +1,13 @@
+	1. docker exec -it advpgsql psql -U postgres -c "CREATE USER dailystaruser WITH PASSWORD 'dailystaruser';"
+	3. docker exec -it advpgsql psql -U postgres -c "CREATE DATABASE dailystardb OWNER dailystaruser;"
+	4. docker exec -it advpgsql psql -U postgres -c "\connect dailystardb dailystaruser;"
+## open a bash and execute below command.
+	5. docker exec -it advpgsql bash
+## after run the bash execute the below comand
+	6. psql -h localhost -p 5432 -U dailystaruser -d dailystardb
+#	7. CREATE SCHEMA vgm AUTHORIZATION dailystaruser;
+	8. GRANT ALL ON SCHEMA public TO dailystaruser;
+
+# go to api folder and run below two script which will genarate all table and insert master data in table.
+## execute below comand for your table creation and master data upload.{you need to run it from api folder location},user taradmin password
+	9. psql -h localhost -d satcomvgm -U vgmadmin -p 5432 -a -q -f tarSqlTable.sql
